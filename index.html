@@ -8,7 +8,27 @@
   </head>
   <body>
     <h1>Todo アプリ</h1>
-    <div id="app"></div>
-    <script src="app.js"></script>
+    <div id="app">
+        <div class="new-todo">
+            <div class="new-todo-item">
+                <label for="new-todo-title">タイトル</label>
+                <input v-model="todoTitle" type="text" id="new-todo-title">
+            </div>
+            <div class="new-todo-item">
+                <label for="new-todo-description">説明</label>
+                <textarea v-model="todoDescription" type="text" id="new-todo-description"></textarea>
+            </div>
+        </div>
+        <div>
+            <div class="todo-search">
+                <div class="todo-search-item">
+                    <label for="todo-search-keyword">キーワードで検索</label>
+                    <input v-model="searchWord" type="text" id="todo-search-keyword" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js">
+    </script>
   </body>
 </html>
