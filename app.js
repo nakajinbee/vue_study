@@ -25,6 +25,14 @@ Vue.createApp({
       return this.categories.indexOf(categoryName) !== -1;
     },
   },
+  watch: {
+    todos: {
+      handler: function (next) {
+        window.localStorage.setItem("todos", JSON.stringify(next));
+      },
+      deep: true,
+    },
+  },
   methods: {
     createTodo: function () {
       if (!this.canCreateTodo) {
@@ -36,8 +44,8 @@ Vue.createApp({
         description: this.todoDescription,
         categories: this.todoCategories,
         dateTime: Date.now(),
-        done: false
-      })
+        done: false,
+      });
 
       this.todoTitle = "";
       this.todoDescription = "";
@@ -47,8 +55,19 @@ Vue.createApp({
       if (!this.canCreateCategory) {
         return;
       }
-      this.categories.push(this.categoryName)
+      this.categories.push(this.categoryName);
       this.categoryName = "";
     },
+  },
+  created: function () {
+    const todos = window.localStorage.getItem("todos");
+    const categories = window.localStorage.getItem("categories");
+
+    if (todos) {
+      this.todos = JSON.parse(todos);
+    }
+    if (categories) {
+      this.categories = JSON.parse(categories);
+    }
   },
 }).mount("#app");
