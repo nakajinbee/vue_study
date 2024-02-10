@@ -66,6 +66,8 @@
             />
           </div>
         </div>
+        <ul v-if="hasTodos" class="todo-list"></ul>
+        <p v-else>Todoタスクはまだ登録されていません。</p>
       </div>
     </div>
     <script src="app.js"></script>
