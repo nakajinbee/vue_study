@@ -24,8 +24,39 @@ Vue.createApp({
       const categoryName = this.categoryName;
       return this.categories.indexOf(categoryName) !== -1;
     },
-    hasTodos: function(){
+    hasTodos: function () {
       return this.todos.length > 0;
+    },
+    resultTodos: function () {
+      const selectedCategory = this.selectedCategory;
+      const hideDoneTodo = this.hideDoneTodo;
+      const order = this.order;
+      const searchWord = this.searchWord;
+      return this.todos
+        .filter(function (todo) {
+          return (
+            selectedCategory === "" ||
+            todo.categories.indexof(selectedCategory) !== -1
+          );
+        })
+        .filter(function (todo) {
+          if (hideDoneTodo) {
+            return !todo.done;
+          }
+          return true;
+        })
+        .fileter(function (todo) {
+          return (
+            todo.title.indexOf(searchWord) !== -1 ||
+            todo.description.indexOf(searchWord) !== -1
+          );
+        })
+        .sort(function (a, b) {
+          if (order === "asc") {
+            return a.dateTime - b.dateTime;
+          }
+          return b.dateTime - a.dateTime;
+        });
     },
   },
   watch: {
