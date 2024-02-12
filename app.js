@@ -45,7 +45,7 @@ Vue.createApp({
           }
           return true;
         })
-        .fileter(function (todo) {
+        .filter(function (todo) {
           return (
             todo.title.indexOf(searchWord) !== -1 ||
             todo.description.indexOf(searchWord) !== -1
